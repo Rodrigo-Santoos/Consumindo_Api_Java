@@ -11,7 +11,7 @@ public class Main {
 	public static void main(String[] args) throws IOException, InterruptedException {
 
 		// Sending get request
-		URL url = new URL("https://apirest-pacientes.herokuapp.com/swagger-ui.html#!/pacientes45resources/listarPacientesUsingGET");
+		URL url = new URL("https://viacep.com.br/ws/08151000/json/");
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		
 		//mesma informaçoes no header postman

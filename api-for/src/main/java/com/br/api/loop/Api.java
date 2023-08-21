@@ -16,17 +16,18 @@ public class Api {
 //--conexao API
 		//setando get requisiçao
 //											URL API
-		URL url = new URL("https://apirest-pacientes.herokuapp.com/swagger-ui.html#!/pacientes45resources/listarPacientesUsingGET");
+		URL url = new URL("https://viacep.com.br/ws/08151000/json/");
 		HttpURLConnection cone = (HttpURLConnection) url.openConnection();
 		
 		//mesma informaçoes no header postman
+
 		//campo do token  				key 							 value
-		cone.setRequestProperty("API-KEY-AQUI", "54d75sa178f7487f1d78f77tr44198as87ed4f7");
+		//cone.setRequestProperty("API-KEY-AQUI", "54d75sa178f7487f1d78f77tr44198as87ed4f7");
 		
 		cone.setRequestProperty("Accept", "application/json");
 		
 		cone.setRequestMethod("GET");
-		
+
 
 		BufferedReader in = new BufferedReader(new InputStreamReader(cone.getInputStream()));
 		String output;
@@ -41,27 +42,29 @@ public class Api {
 		JSONObject obj = new JSONObject(response.toString());
 		//loop percorrendo todo Json
 		for(int i = 0; i < obj.names().length(); i++){
-			
+
+
 //			System.out.println("key = " + obj.names().getString(i) + " value = " + obj.get(obj.names().getString(i)));
 //			System.out.println(obj.opt("id"));
 //			System.out.println(obj.opt("description"));
 //			System.out.println(obj.opt("state"));
 //			System.out.println();
-			
+
 			//System.out.println(obj.get(obj.names().getString(i)).getClass());
-			
+
 			//if para trazer as informaçoes que eu preciso
-			if(obj.get(obj.names().getString(i)) == obj.get("description")) {
+			if(obj.get(obj.names().getString(i)) == obj.get("cep")) {
 				//System.out.println(obj.get(obj.names().getString(i)));
-				System.out.println(obj.opt("description"));
-			} else 	if(obj.get(obj.names().getString(i)) == obj.get("id")) {
+				System.out.println(obj.opt("cep"));
+
+			} else 	if(obj.get(obj.names().getString(i)) == obj.get("bairro")) {
 				//System.out.println(obj.get(obj.names().getString(i)));
-				System.out.println(obj.opt("id"));
-			}  else if(obj.get(obj.names().getString(i)) == obj.get("state")) {
+				System.out.println(obj.opt("bairro"));
+				
+			}  else if(obj.get(obj.names().getString(i)) == obj.get("ibge")) {
 				//System.out.println(obj.get(obj.names().getString(i)));
-				System.out.println(obj.opt("state"));
-			} 	
-			
+				System.out.println(obj.opt("ibge"));
+			}
 		}
 	}
 
